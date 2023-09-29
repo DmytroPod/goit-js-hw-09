@@ -29,8 +29,8 @@ const options = {
     refs.startBtn.addEventListener('click', startTimer);
 
     function startTimer() {
-      if (selectedDates[0] - new Date() < 0) {
-        refs.startBtn.disabled = true;
+      if (selectedDates[0] - new Date() <= 0) {
+        window.alert('Please choose a date in the future');
         return;
       }
 
@@ -38,13 +38,15 @@ const options = {
 
       function changeTimerData() {
         const currentDate = selectedDates[0] - new Date();
-        const convertedDate = pad(convertMs(currentDate));
 
-        if (currentDate < 0) {
+        if (currentDate <= 0) {
           clearInterval(intervalId);
+          refs.startBtn.disabled = true;
+          window.alert('Finish');
           return;
         }
 
+        const convertedDate = pad(convertMs(currentDate));
         changeRefsTextContent(convertedDate);
       }
 
