@@ -40,9 +40,9 @@ const options = {
         const currentDate = selectedDates[0] - new Date();
 
         if (currentDate <= 0) {
-          clearInterval(intervalId);
           refs.startBtn.disabled = true;
           window.alert('Finish');
+          clearInterval(intervalId);
           return;
         }
 
